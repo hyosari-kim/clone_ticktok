@@ -7,11 +7,11 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:tiktock_clone/main.dart';
+import 'package:tiktok_clone/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const TickTockApp());
+    await tester.pumpWidget(const TickTokApp());
   });
 }
