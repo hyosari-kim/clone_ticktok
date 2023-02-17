@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/screens/onboarding/tutorial_screen.dart';
+import 'package:tiktok_clone/screens/main_screen.dart';
 
 void main() {
   runApp(const TickTokApp());
@@ -31,7 +31,7 @@ class TickTokApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const TutorialScreen(),
+      home: const MainScreen(),
     );
   }
 }

@@ -36,8 +36,10 @@ class _CreateBirthDayScreenState extends State<CreateBirthDayScreen>
   }
 
   void onTapNext() {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SelectInterestScreen()));
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const SelectInterestScreen()),
+      (route) => false,
+    );
   }
 
   @override

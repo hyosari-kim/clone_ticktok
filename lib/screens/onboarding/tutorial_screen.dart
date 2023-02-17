@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/screens/main_screen.dart';
 import 'package:tiktok_clone/screens/onboarding/tutorial_first_screen.dart';
 import 'package:tiktok_clone/screens/onboarding/tutorial_second_screen.dart';
 
@@ -26,6 +27,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
     }
 
     setState(() {});
+  }
+
+  void _onTapNext() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: ((context) => const MainScreen())),
+        (route) => false);
   }
 
   @override
@@ -74,7 +81,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       widthFactor: 1,
                       child: CupertinoButton(
                         color: Theme.of(context).primaryColor,
-                        onPressed: () {},
+                        onPressed: _onTapNext,
                         child: const Text("Go to app"),
                       ),
                     ),

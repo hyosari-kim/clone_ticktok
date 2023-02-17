@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/screens/main_screen.dart';
 import 'package:tiktok_clone/widget/authentication/primary_button.dart';
 
 class LoginFormScreen extends StatefulWidget {
@@ -21,7 +22,15 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       print(formData);
+
+      _goNextPage();
     }
+  }
+
+  void _goNextPage() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: ((context) => const MainScreen())),
+        (route) => false);
   }
 
   @override
