@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/screens/video/video_feed_screen.dart';
 
-import 'navigation/navigation_add_video_item.dart';
-import 'navigation/navigation_tab_item.dart';
+import '../widget/navigation/navigation_add_video_item.dart';
+import '../widget/navigation/navigation_tab_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -33,10 +34,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _selectedTab == 0 ? Colors.black : Colors.white,
       body: Stack(children: [
         Offstage(
           offstage: _selectedTab != 0,
-          child: const Center(child: Text("home")),
+          child: const VideoFeedScreen(),
         ),
         Offstage(
           offstage: _selectedTab != 1,
