@@ -28,9 +28,7 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  void _onTapAddButton() {
-    print("button");
-  }
+  void _onTapAddButton() {}
 
   @override
   Widget build(BuildContext context) {
