@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/widget/video/video_action_button.dart';
+import 'package:tiktok_clone/widget/video/video_host_avatar.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -121,6 +124,53 @@ class _VideoPostState extends State<VideoPost>
                   ),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            left: 10,
+            bottom: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "@효사리",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w900),
+                ),
+                Gaps.v12,
+                Text(
+                  "효사리네 건담 구경하세요.",
+                  style: TextStyle(color: Colors.white, fontSize: Sizes.size16),
+                ),
+                Gaps.v10,
+                Text(
+                  "#효사리네 #건담",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: Sizes.size14,
+                    fontWeight: FontWeight.w800,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            right: 10,
+            bottom: 20,
+            child: Column(
+              children: const [
+                VideoHostAvatar(),
+                Gaps.v28,
+                VideoActionButton(
+                    icon: FontAwesomeIcons.solidHeart, text: "2.3M"),
+                Gaps.v24,
+                VideoActionButton(
+                    icon: FontAwesomeIcons.solidMessage, text: "33.0K"),
+                Gaps.v24,
+                VideoActionButton(icon: FontAwesomeIcons.share, text: "Share"),
+              ],
             ),
           )
         ],
