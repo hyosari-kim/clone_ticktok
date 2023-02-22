@@ -70,18 +70,29 @@ class _VideoFeedScreenState extends State<VideoFeedScreen> {
         duration: _animationDuration, curve: _animationCurve);
   }
 
+  Future _onRefresh() {
+    return Future.delayed(const Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      scrollDirection: Axis.vertical,
-      controller: _pageController,
-      onPageChanged: _onPageChanged,
-      itemBuilder: (context, index) {
-        return VideoPost(
-          index: index,
-          onEndPlay: _onEndVideoPlay,
-        );
-      },
+    return RefreshIndicator(
+      edgeOffset: 30,
+      displacement: 10,
+      backgroundColor: Colors.white,
+      color: Theme.of(context).primaryColor,
+      onRefresh: _onRefresh,
+      child: PageView.builder(
+        scrollDirection: Axis.vertical,
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        itemBuilder: (context, index) {
+          return VideoPost(
+            index: index,
+            onEndPlay: _onEndVideoPlay,
+          );
+        },
+      ),
     );
   }
 }
