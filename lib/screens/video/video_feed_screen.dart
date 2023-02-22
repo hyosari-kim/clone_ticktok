@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/widget/video/video_post.dart';
 
 class VideoFeedScreen extends StatefulWidget {
   const VideoFeedScreen({super.key});
@@ -64,6 +65,11 @@ class _VideoFeedScreenState extends State<VideoFeedScreen> {
     }
   }
 
+  void _onEndVideoPlay() {
+    _pageController.nextPage(
+        duration: _animationDuration, curve: _animationCurve);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
@@ -71,7 +77,10 @@ class _VideoFeedScreenState extends State<VideoFeedScreen> {
       controller: _pageController,
       onPageChanged: _onPageChanged,
       itemBuilder: (context, index) {
-        return contents[index];
+        return VideoPost(
+          index: index,
+          onEndPlay: _onEndVideoPlay,
+        );
       },
     );
   }
