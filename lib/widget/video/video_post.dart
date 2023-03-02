@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/widget/video/video_action_button.dart';
+import 'package:tiktok_clone/widget/video/video_comments.dart';
 import 'package:tiktok_clone/widget/video/video_description.dart';
 import 'package:tiktok_clone/widget/video/video_host_avatar.dart';
 import 'package:video_player/video_player.dart';
@@ -68,6 +69,18 @@ class _VideoPostState extends State<VideoPost>
         _isPlaying = true;
       });
     }
+  }
+
+  void _onCommentIconTap() {
+    if (_videoPlayerController.value.isPlaying) {
+      _onTogglePause();
+    }
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const VideoComments(),
+    );
   }
 
   @override
@@ -140,16 +153,20 @@ class _VideoPostState extends State<VideoPost>
             right: 10,
             bottom: 20,
             child: Column(
-              children: const [
-                VideoHostAvatar(),
+              children: [
+                const VideoHostAvatar(),
                 Gaps.v28,
-                VideoActionButton(
+                const VideoActionButton(
                     icon: FontAwesomeIcons.solidHeart, text: "2.3M"),
                 Gaps.v24,
-                VideoActionButton(
-                    icon: FontAwesomeIcons.solidMessage, text: "33.0K"),
+                GestureDetector(
+                  onTap: _onCommentIconTap,
+                  child: const VideoActionButton(
+                      icon: FontAwesomeIcons.solidMessage, text: "33.0K"),
+                ),
                 Gaps.v24,
-                VideoActionButton(icon: FontAwesomeIcons.share, text: "Share"),
+                const VideoActionButton(
+                    icon: FontAwesomeIcons.share, text: "Share"),
               ],
             ),
           )
