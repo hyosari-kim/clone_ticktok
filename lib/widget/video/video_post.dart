@@ -29,7 +29,7 @@ class _VideoPostState extends State<VideoPost>
 
   late AnimationController _animationController;
 
-  bool _isPlaying = true;
+  bool _isPaused = false;
 
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
@@ -57,17 +57,20 @@ class _VideoPostState extends State<VideoPost>
       }
 
       setState(() {
-        _isPlaying = !_isPlaying;
+        _isPaused = !_isPaused;
       });
     }
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 1 && !_videoPlayerController.value.isPlaying) {
+    if (info.visibleFraction == 1 &&
+        !_isPaused &&
+        !_videoPlayerController.value.isPlaying) {
       _videoPlayerController.play();
-      setState(() {
-        _isPlaying = true;
-      });
+    }
+
+    if (info.visibleFraction == 0 && _videoPlayerController.value.isPlaying) {
+      _onTogglePause();
     }
   }
 
@@ -129,7 +132,7 @@ class _VideoPostState extends State<VideoPost>
               },
               child: AnimatedOpacity(
                 duration: _duration,
-                opacity: _isPlaying ? 0 : 1,
+                opacity: _isPaused ? 1 : 0,
                 child: const IgnorePointer(
                   child: FaIcon(
                     FontAwesomeIcons.play,
