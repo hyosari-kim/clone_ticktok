@@ -7,9 +7,11 @@ class NavigationAddVideoButton extends StatefulWidget {
   const NavigationAddVideoButton({
     Key? key,
     required this.onTapButton,
+    required this.isInverted,
   }) : super(key: key);
 
   final Function onTapButton;
+  final bool isInverted;
 
   @override
   State<NavigationAddVideoButton> createState() =>
@@ -91,13 +93,14 @@ class _NavigationAddVideoButtonState extends State<NavigationAddVideoButton>
                     width: 35,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: widget.isInverted ? Colors.black : Colors.white,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: FaIcon(
                         FontAwesomeIcons.plus,
                         size: Sizes.size16,
+                        color: widget.isInverted ? Colors.white : Colors.black,
                       ),
                     ),
                   ),

@@ -12,16 +12,28 @@ class NavTabItem extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.onNavTap,
+    required this.invertedIcon,
+    required this.invertedSelectedIcon,
+    required this.invertedLabel,
+    required this.isInverted,
   }) : super(key: key);
 
   final FaIcon icon;
   final FaIcon selectedIcon;
   final Text label;
+  final FaIcon invertedIcon;
+  final FaIcon invertedSelectedIcon;
+  final Text invertedLabel;
   final bool isSelected;
   final Function onNavTap;
+  final bool isInverted;
 
   @override
   Widget build(BuildContext context) {
+    FaIcon navIcon = isInverted ? invertedIcon : icon;
+    FaIcon navSelectedIcon = isInverted ? invertedSelectedIcon : selectedIcon;
+    Text navLabel = isInverted ? invertedLabel : label;
+
     return Expanded(
       child: GestureDetector(
         onTap: () => onNavTap(),
@@ -34,9 +46,9 @@ class NavTabItem extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                isSelected ? selectedIcon : icon,
+                isSelected ? navSelectedIcon : navIcon,
                 Gaps.v8,
-                label,
+                navLabel,
               ],
             ),
           ),
