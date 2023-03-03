@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/screens/video/video_explore_screen.dart';
 import 'package:tiktok_clone/screens/video/video_feed_screen.dart';
 
 import '../widget/navigation/navigation_add_video_item.dart';
@@ -15,15 +16,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  TabType _selectedTab = TabType.home;
-
-  List<Widget> screens = [
-    const Center(child: Text("home")),
-    const Center(child: Text("search")),
-    Container(),
-    const Center(child: Text("inbox")),
-    const Center(child: Text("profile"))
-  ];
+  TabType _selectedTab = TabType.explore;
 
   void _onBottomTap(int index) {
     setState(() {
@@ -69,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         Offstage(
           offstage: _selectedTab != TabType.explore,
-          child: const Center(child: Text("explore")),
+          child: const VideoExploreScreen(),
         ),
         Offstage(
           offstage: _selectedTab != TabType.inbox,
